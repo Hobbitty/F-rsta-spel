@@ -13,8 +13,8 @@ public class playerMovement : MonoBehaviour
 
     void Start()
     {
-
-  
+        //radomiserar floaten för hur snabbt skeppet ska åka framåt.
+        forward = (Random.Range(0, 5f));  
     }
     
     void Update()

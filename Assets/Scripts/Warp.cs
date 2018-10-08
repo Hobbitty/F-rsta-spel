@@ -17,15 +17,22 @@ public class Warp : MonoBehaviour {
         warp();
 	}
     void warp()
-    {
+    {   // ifall spriten åker utanför skärmen (6 x rutor)
         if (transform.position.x > 6)
-        {
-            trail.emitting = false;
+        {//flytta spriten till -6 rutor och behåll samma y och z värde
             transform.position = new Vector3(-6f, transform.position.y, transform.position.z);
-        }
-        if (transform.position.x < -6 || transform.position.x > -5)
-        {
-            trail.emitting = true;
+        }//ifall spriten åker utanför skärmen (-6)
+        if (transform.position.x < -6)
+        {//flytta spelaren till 6 rutor och behåll samma y och z värde
+            transform.position = new Vector3(6f, transform.position.y, transform.position.z);
+        }//samma som ovan fast med y värde istället
+        if (transform.position.y > 6)
+        {// --||--
+            transform.position = new Vector3(transform.position.x, -6 , transform.position.z);
+        }//--||--
+        if (transform.position.y < -6)
+        {// --||--
+            transform.position = new Vector3(transform.position.x, 6f, transform.position.z);
         }
 
     }
