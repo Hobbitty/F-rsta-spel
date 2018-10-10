@@ -35,6 +35,9 @@ public class colorChangerScript : MonoBehaviour
             blue = (Random.Range(0, 1f));
             //sätter färgen. Sätter 1f i slutet för att hålla alphan 100%
             Rend.color = new Color(red, green, blue, 1f);
+            //sätter massa bools baserat på värdet av red, green och blå
+            //kan använda "else" för att göra kodes simplare men för att jag inte skulle tappa bort mig använde jag bara if
+
             if (red < 0.5)
             {
                 pulseBoolRed = false;
@@ -65,33 +68,40 @@ public class colorChangerScript : MonoBehaviour
     }
     void pulse()
     {
+        //ifall boolen är  false så minskar red med 0.05 varje Repeat
         if (pulseBoolRed == false)
         {
             red -= 0.05f;
+            //ifall red blir mindre än 0 ändras red till 0
             if (red < 0)
             {
                 red = 0;
             }
+            //ifall red blir 0 ändras boolen till true
             if (red == 0)
             {
                 pulseBoolRed = true;
             }
             Rend.color = new Color(red, green, blue, 1f);
         }
+        //ifall boolen är true så kar red med 0.05 varje Repeat
         if (pulseBoolRed == true)
         {
+
             red += 0.05f;
+            //ifall red blir större än 1 ändras red till 1
             if (red > 1)
             {
                 red = 1;
             }
+            //ifall red blir 1 ändras boolen till false
             if (red == 1)
             {
                 pulseBoolRed = false;
             }
             Rend.color = new Color(red, green, blue, 1f);
         }
-
+        //samma som pulseboolRed
         if (pulseBoolGreen == false)
         {
             green -= 0.05f;
@@ -118,7 +128,7 @@ public class colorChangerScript : MonoBehaviour
             }
             Rend.color = new Color(red, green, blue, 1f);
         }
-
+        //samma som pulseBoolRed
         if (pulseBoolBlue == false)
         {
             blue -= 0.05f;
