@@ -7,6 +7,7 @@ public class playerMovement : MonoBehaviour
     //sätter värden för framåt och roteringshastighet
     public float forward;
     public float rotate;
+    private float time;
   
 
 
@@ -14,7 +15,8 @@ public class playerMovement : MonoBehaviour
     void Start()
     {
         //radomiserar floaten för hur snabbt skeppet ska åka framåt.
-        forward = (Random.Range(0, 5f));  
+        forward = (Random.Range(0, 5f));
+        InvokeRepeating("rotateBasedOnTime", 1f, 1f);
     }
     
     void Update()
@@ -32,7 +34,7 @@ public class playerMovement : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.S))
         {
-            //spriten tror att fram är på fel sida, därför avänds positiv forward när negaiv skall egentligen användas
+            
             //pushar spriten bakåt med hälften av kraften som den trycks fram med. Därav saktas den ner till halva hastigheten.
 
             transform.Translate(0, (forward/2)*Time.deltaTime, 0, Space.Self);
@@ -45,6 +47,11 @@ public class playerMovement : MonoBehaviour
             transform.Rotate(0, 0, -rotate*Time.deltaTime, Space.Self);
         }
         //Tryker ständigt fram spriten med forward variablen
-        transform.Translate(0, -forward*Time.deltaTime, 0, Space.Self);
+        transform.Translate(0, forward*Time.deltaTime, 0, Space.Self);
+    }
+    void rotateBasedOnTime()
+    {
+        time += 1;
+        rotate += time / 5;
     }
 }
